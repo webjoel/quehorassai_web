@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/WEB-INF/facelets/layout.xhtml">
+		<ui:define name="conteudo">
+			<h2>Administrativo</h2>
+			<br />
+			<h:panelGroup rendered="#{principal.usuarioConectado.usuarioAdm == 'S'}">
+				<h1><a href="cidade.xhtml">Cadastro de Cidades</a></h1>
+				<h1><a href="logradouro.xhtml">Cadastro de Logradouros</a></h1>
+				<h1><a href="linha.xhtml">Cadastro de Linhas</a></h1>
+				<h1><a href="itinerario.xhtml">Cadastro de Itinerários</a></h1>
+				<h1><a href="horario.xhtml">Cadastro de Horários</a></h1>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{principal.usuarioConectado == null || principal.usuarioConectado.usuarioAdm == 'N'}">
+				<h1>Somente usuários administradores podem ter acesso as opções administrativas.</h1>
+			</h:panelGroup>
+		</ui:define>
+	</ui:composition>
+</html>

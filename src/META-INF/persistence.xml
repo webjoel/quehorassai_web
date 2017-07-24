@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+	
+	<persistence-unit name="quehorassai" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <non-jta-data-source>java:jboss/datasources/QueHorasSaiDS</non-jta-data-source>
+        
+        <class>net.unesc.quehorassai.modelo.Cidade</class>
+        <class>net.unesc.quehorassai.modelo.Horario</class>
+        <class>net.unesc.quehorassai.modelo.Itinerario</class>
+        <class>net.unesc.quehorassai.modelo.Linha</class>
+        <class>net.unesc.quehorassai.modelo.Logradouro</class>
+        <class>net.unesc.quehorassai.modelo.Usuario</class>
+        
+        <properties>
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.format_sql" value="false" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.FirebirdDialect" />
+            <property name="hibernate.connection.driver_class" value="org.firebirdsql.jdbc.FBDriver"/>
+            <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
+        </properties>
+    </persistence-unit>
+</persistence>

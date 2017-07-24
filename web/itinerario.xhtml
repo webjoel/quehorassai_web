@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/WEB-INF/facelets/layout.xhtml">
+		<ui:define name="conteudo">
+			<h2>Cadastro de Itinerários</h2>
+			<h:panelGrid id="g-itinerario" columns="2">
+				<h:outputText value="Linha:" />
+				<p:selectOneMenu id="codigoLinha" value="#{itinerario.bean.codigoLinha}">
+					<f:selectItems value="#{itinerario.linhas}" />
+				</p:selectOneMenu>
+				<h:outputText value="Logradouro:" />
+				<p:selectOneMenu id="codigoLogradouro" value="#{itinerario.bean.codigoLogradouro}">
+					<f:selectItems value="#{itinerario.logradouros}" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="Novo" action="#{itinerario.novo}" update="form1" />
+			<p:commandButton value="Salvar" action="#{itinerario.salvar}" update="form1" />
+			<p:commandButton value="Excluir" action="#{itinerario.excluir}" update="form1" />
+			<p:dataTable id="t-itinerarios" value="#{itinerario.listaBean}" var="item" rows="10" paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15" emptyMessage="Sem dados para exibir.">
+				<f:facet name="header">
+                    <h:outputText value="Itinerários Cadastrados" />
+                </f:facet>
+                <p:column>
+	                <f:facet name="header">
+	                    <h:outputText value="Código" />
+	                </f:facet>
+	                <h:outputText value="#{item.codigoItinerario}" />
+	            </p:column>
+	            <p:column>
+	                <f:facet name="header">
+	                    <h:outputText value="Linha" />
+	                </f:facet>
+	                <h:outputText value="#{item.codigoLinha}" />
+	            </p:column>
+	            <p:column>
+	                <f:facet name="header">
+	                    <h:outputText value="Logradouro" />
+	                </f:facet>
+	                <h:outputText value="#{item.codigoLogradouro}" />
+	            </p:column>
+	            <p:column>
+	                <f:facet name="header">
+	                    <h:outputText value="Ações" />
+	                </f:facet>
+	                <p:commandLink actionListener="#{itinerario.selecionar}" update=":form1:g-itinerario">
+	                	<h:graphicImage url="images/icon-edit.gif" alt="Editar" />
+	                	<f:attribute name="bean" value="#{item}" />
+	                </p:commandLink>
+	            </p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:head>
+		<title>Que Horas Sai???</title>
+		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen, projection" />
+		<script type="text/javascript">
+			function mascara(src, mascara) {
+				var campo = src.value.length;
+				var saida = mascara.substring(0,1);
+				var texto = mascara.substring(campo);
+				
+				if(texto.substring(0,1) != saida) {
+					src.value += texto.substring(0,1);
+				}
+			}
+		</script>
+	</h:head>
+	<h:body>
+		<h:form id="form1"> 
+			<div id="outer">
+				<div id="header">
+			   		<div id="logo">
+			   			<a href="index.xhtml">
+							<img src="images/logo-quehorassai.png" border="0" alt="Que Horas Sai???" />
+						</a>
+			   		</div>
+			   		<div id="login-box">
+			  			<h:panelGroup layout="block" styleClass="acesso" rendered="#{principal.usuarioConectado == null}">
+			   				<h:outputText value="Acesso" />
+			   				<h:inputText id="loginUsuarioAcesso" size="10" styleClass="txt" value="#{principal.loginUsuarioAcesso}" /> 
+			   				<h:inputSecret id="senhaUsuarioAcesso" size="10" styleClass="txt" value="#{principal.senhaUsuarioAcesso}" />
+			   				<p:commandLink action="#{principal.acessar}" ajax="false">
+				   				<h:graphicImage url="images/go-button.gif" alt="Entrar" />
+			   				</p:commandLink>
+			   			</h:panelGroup>
+			   			<h:panelGroup layout="block" styleClass="acesso" rendered="#{principal.usuarioConectado != null}">
+			   				<h2>Olá <h:outputText value="#{principal.usuarioConectado.nomeUsuario}" /> | 
+			  					<p:commandLink value="Sair" action="#{principal.sair}" ajax="false" />
+			  				</h2>
+			   			</h:panelGroup>
+			   		</div>
+			 	</div>
+				<div id="body-top">
+					<ul id="main-nav" class="clearfix">
+						<li><a href="index.xhtml">Início</a></li>
+						<li><a href="administrativo.xhtml">Administrativo</a></li>
+						<li><a href="meusdados.xhtml">Meus dados</a></li>
+						<li id="right-tab">Sai às</li>
+					</ul>
+				</div>
+				<div id="body-middle" class="clearfix">
+					<div id="main-col">
+						<div id="content-top"></div>
+						<div id="content-wrapper">
+							<div id="content">
+								<div>
+								 	<ui:insert name="conteudo" />
+								</div>
+							</div>
+						</div>
+						<div id="content-bottom"></div>
+					</div>
+					<div id="side-col">
+						<div class="side-box-top"></div>
+						<h:panelGroup id="g-proximasSaidas">
+							<div class="side-box-middle-unique">
+								<h:outputText value="#{principal.proximoHorario}" />
+								<p:commandLink action="#{principal.proximoHorario}" update="g-proximasSaidas">
+									<img src="images/proximo-horario.gif" alt="Próximo horário" />
+								</p:commandLink>
+							</div>
+							<div class="side-box-bottom"></div>
+							<div class="side-box-top"></div>
+							<div class="side-box-middle">
+								<h2>Próximas saídas</h2>
+								<ui:repeat value="#{principal.proximosHorarios}" var="item">
+									<h:outputText value="#{item}" />
+									<br />
+								</ui:repeat>
+							</div>
+						</h:panelGroup>
+						<div class="side-box-bottom"></div>
+					</div>
+				</div>
+				<div id="body-bottom"></div>
+				<div id="footer">
+				 	<p>Layout adaptado de <a href="http://www.free-css.com/">victoria</a> | <a href="http://www.studio7designs.com">design by studio7designs</a> | <a href="http://www.slicendiceit.com">coding by slice 'n dice</a></p>
+				</div>
+			</div>
+		</h:form>
+	</h:body>
+</html>

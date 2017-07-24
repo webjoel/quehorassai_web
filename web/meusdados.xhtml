@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/WEB-INF/facelets/layout.xhtml">
+		<ui:define name="conteudo">
+			<h2>Meus dados</h2>
+			<h:panelGrid columns="2">
+				<h:outputText value="Nome:" />
+				<p:inputText id="nomeUsuario" size="40" maxlength="50" value="#{usuario.bean.nomeUsuario}" />
+				<h:outputText value="Email:" />
+				<p:inputText id="emailUsuario" size="40" maxlength="60" value="#{usuario.bean.emailUsuario}" />
+				<h:outputText value="Usuário:" />
+				<p:inputText id="loginUsuario" size="40" maxlength="25" value="#{usuario.bean.loginUsuario}" />
+				<h:outputText value="Senha:" />
+				<p:inputText id="senhaUsuario" size="40" maxlength="25" type="password" value="#{usuario.bean.senhaUsuario}" />
+				<h:outputText value="Logradouro:" />
+				<p:selectOneMenu id="codigoLogradouro" value="#{usuario.bean.codigoLogradouro}">
+					<f:selectItems value="#{usuario.logradouros}" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="Salvar" action="#{usuario.salvar}" update="form1" />
+			<p:commandButton value="Excluir" action="#{usuario.excluir}" update="form1" />
+		</ui:define>
+	</ui:composition>
+</html>
